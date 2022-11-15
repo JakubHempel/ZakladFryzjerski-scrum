@@ -8,22 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
-public class ClientController
+@RequestMapping("/store")
+public class ProductController
 {
     @Autowired
-    ClientRepository clientRepository;
+    ProductRepository productRepository;
 
-    @GetMapping("/test")
-    public int test()
+    @GetMapping("/")
+    public List<Product> getAll()
     {
-        return 1;
+        return productRepository.getAll();
     }
-
-    @GetMapping("/clients")
-    public List<Client> getAll()
-    {
-        return clientRepository.getAll();
-    }
-
 }

@@ -8,14 +8,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class ClientRepository
+public class ProductRepository
 {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    public List<Client> getAll()
+    public List<Product> getAll()
     {
-        return jdbcTemplate.query("SELECT * FROM client", BeanPropertyRowMapper.newInstance(Client.class));
+        return jdbcTemplate.query("SELECT *, count(*) AS numberOf FROM product group by model;", BeanPropertyRowMapper.newInstance(Product.class));
     }
-
 }
