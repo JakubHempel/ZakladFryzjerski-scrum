@@ -1,4 +1,4 @@
-package pl.systemyinformatyczne.zakladfryzjerski;
+package pl.scrumsystem.zakladfryzjerski;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -7,8 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 class ZakladFryzjerskiApplicationTests
 {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads()
+    {
+    }
 
 }
