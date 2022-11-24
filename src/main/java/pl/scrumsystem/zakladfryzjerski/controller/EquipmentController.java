@@ -56,10 +56,10 @@ public class EquipmentController {
         Equipment equipment = eRepo.findById(equipmentId).orElseThrow();
         equipment.setCond("Defective");
         eRepo.save(equipment);
+        try {Thread.sleep(200000);}
+        catch(InterruptedException ignored) {;}
         return "redirect:/showEquipment";
     }
-
-
 
 }
 
