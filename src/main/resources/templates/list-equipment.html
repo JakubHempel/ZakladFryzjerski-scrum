@@ -1,0 +1,64 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>List Equipment</title>
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous" />
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>List All Equipment</h2>
+    <br>
+    <a th:href="@{/listBrokenEquipment}" class="btn btn-primary mb-2">List broken equipment</a>
+    <br/><br/>
+
+    <table class="table table-bordered table-striped" id="equipment-table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Manufacturer</th>
+                <th>Condition</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr th:each="equipment: ${equipment}">
+            <td th:text="${equipment.id}" />
+            <td th:text="${equipment.name}" />
+            <td th:text="${equipment.manufacturer}" />
+            <td th:text="${equipment.cond}" />
+            <td>
+                <a th:if="${equipment.cond == 'Working'}" th:href="@{/changeToDefective(equipmentId=${equipment.id})}" class="btn btn-danger ml-2 modal-dialog-centered">Change to defective</a>
+                <a th:if="${equipment.cond == 'Defective'}" th:href="@{/changeToWorking2(equipmentId=${equipment.id})}" class="btn btn-success ml-2 modal-dialog-centered">Change to working</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#equipment-table").DataTable({
+            'aoColumnDefs': [{
+                'bSortable': false,
+                'aTargets': [-1] /* 1st one, start by the right */
+            }]
+        });
+    })
+</script>
+
+</body>
+
+</html>
