@@ -69,6 +69,11 @@
 			font-size: 25px;
 			font-weight: bold;
 		}
+		
+		.form-container h4 {
+			font-weight: normal;
+			font-size: 10px;
+		}
 
 		/* Kiedy na okienko klikniemy myszką */
 		.form-container input[type=text]:focus, .form-container select:focus {
@@ -111,7 +116,8 @@
     <h1>Zgłoś uszkodzony sprzęt</h1>
 	  <!--Okienko 1-->
 	<label for="Salon">Wybierz salon<b>*</b></label>
-	<select name="Salon" id="Salony">
+	<select name="Salon" id="Salony" required>
+	<option value="" selected disabled hidden>Wybierz</option>
     <option value="1">Salon 1</option>
     <option value="2">Salon 2</option>
     <option value="3">Salon 3</option>
@@ -133,18 +139,20 @@
 	  <!--Okienko 5-->
 	<label for="Stanowisko">Na jakim stanowisku sprzęt jest używany?</label>
 	<select name="Stanowisko" id="Stanowiska">
-	<option value="0"></option>
+	<option value="" selected disabled hidden>Wybierz</option>
     <option value="1">Stanowisko 1</option>
     <option value="2">Stanowisko 2</option>
     <option value="3">Stanowisko 3</option>
     <option value="4">Stanowisko 4</option>
 	</select>
 	  <!--Okienko 6 z datą-->
-	<p><label for="Data">Kiedy sprzęt się zepsuł?<b>*</b></label><p>
-	<input type="date" id="Data" name="Data" value="2023-01-01" min="2023-01-01" max="2100-01-01" required>
+	<label>Kiedy sprzęt się zepsuł?<b>*</b>
+		<input type="date" name="Data" required/>
+	</label>
 	  <!--Okienko 7-->
 	<label for="Priorytet">Priorytet zgłoszenia<b>*</b></label>
 	<select name="Priorytet" id="Priorytety" required>
+	<option value="" selected disabled hidden>Wybierz</option>
     <option value="1">Niski</option>
     <option value="2">Średni</option>
     <option value="3">Wysoki</option>
@@ -155,6 +163,8 @@
 	  <!--Okienko 9-->
 	<p><label for="Info">Dodatkowe informacje</label></p>
 	<textarea id="Info" name="Info" rows="4" cols="50">Możesz podać dodatkowe informacje aby przyspieszyć proces serwisu sprzętu</textarea>
+	
+	<h4><b>*</b> - Pole obowiązkowe</h4>
 	  <!--Przycisk 'Zatwierdź' i 'Anuluj'-->
     <button type="submit" class="btn">Zatwierdź</button>
     <button type="button" class="btn cancel" onclick="closeForm()">Anuluj</button>
