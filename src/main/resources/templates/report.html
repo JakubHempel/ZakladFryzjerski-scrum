@@ -1,0 +1,175 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Zgłoszenie</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		body {font-family: Arial, Helvetica, sans-serif;}
+		* {box-sizing: border-box;}
+
+		/* Przycisk otwierający zgłoszenie - teraz na środku strony */
+		.open-button {
+  		  background-color: #555;
+  		  color: white;
+  		  padding: 16px 20px;
+  		  border: none;
+  		  cursor: pointer;
+  		  opacity: 0.8;
+  		  position: fixed;
+  		  bottom: 50%;
+  		  right: 50%;
+  		  width: 280px;
+  		  margin-right: -140px;
+		}
+
+		/* Formularz w postaci okna podręcznego - domyślnie ukryty */
+		.form-popup {
+  			display: none;
+  			position: fixed;
+  			bottom: 50%;
+  			right: 50%;
+  			border: 3px solid #f1f1f1;
+  			z-index: 9;
+  			margin-right: -250px;
+  			margin-bottom: -250px;
+  			overflow-y: scroll !important;
+  			max-height: 500px;
+		}
+
+		/* Styl kontenera formularza */
+		.form-container {
+		  max-width: 500px;
+		  padding: 10px;
+		  background-color: white;
+		}
+
+		/* Styl okienek, gdzie wprowadzane są dane */
+		.form-container input[type=text], .form-container select, .form-container textarea, .form-container input[type=date] {
+		  width: 100%;
+		  padding: 15px;
+		  margin: 5px 0 22px 0;
+		  border: none;
+		  background: #f1f1f1;
+		  text-align: left;
+		}
+
+		/* Styl nagłówków okienek z danymi */
+		.form-container label {
+			font-size: 15px;
+			font-weight: normal;
+		}
+
+		/* Styl nagłówka formularza */
+		.form-container h1 {
+			font-size: 30px;
+			font-weight: bold;
+		}
+
+		/* Styl nagłówków sekcji */
+		.form-container h2, h3 {
+			font-size: 25px;
+			font-weight: bold;
+		}
+
+		/* Kiedy na okienko klikniemy myszką */
+		.form-container input[type=text]:focus, .form-container select:focus {
+		  background-color: #ddd;
+		  outline: none;
+		}
+
+		/* Styl dla przycisku 'Zatwierdź' */
+		.form-container .btn {
+		  background-color: #04AA6D;
+		  color: white;
+		  padding: 16px 20px;
+		  border: 1px 1px black;
+		  cursor: pointer;
+		  width: 49%;
+		  margin-bottom:10px;
+		  opacity: 0.8;
+		}
+
+		/* Styl dla przycisku 'Anuluj' - nadpisuję tylko kolor */
+		.form-container .cancel {
+		  background-color: red;
+		}
+
+		/* Po najechaniu myszką znika przezroczystość */
+		.form-container .btn:hover, .open-button:hover {
+  		  opacity: 1;
+		}
+	</style> <!--Styl CSS dla strony-->
+</head> <!--Tytuł strony i CSS-->
+<body>
+
+<h2>Fomularz zgłoszeniowy</h2>
+<p>Po kliknięciu w przycisk pojawi się formularz, który należy wypełnić aby zgłosić zepsuty sprzęt</p>
+
+<button class="open-button" onclick="openForm()">Zgłoś sprzęt</button>
+
+<div class="form-popup" id="myForm">
+  <form action="/action_page.php" class="form-container">
+    <h1>Zgłoś uszkodzony sprzęt</h1>
+	  <!--Okienko 1-->
+	<label for="Salon">Wybierz salon<b>*</b></label>
+	<select name="Salon" id="Salony">
+    <option value="1">Salon 1</option>
+    <option value="2">Salon 2</option>
+    <option value="3">Salon 3</option>
+    <option value="4">Salon 4</option>
+	</select>
+
+	<h2>Informacje dotyczące uszkodzonego sprzętu</h2>
+	  <!--Okienko 2-->
+    <label for="Nazwa">Nazwa<b>*</b></label>
+    <input type="text" placeholder="Wpisz nazwę sprzętu" name="Nazwa" required>
+	  <!--Okienko 3-->
+	<label for="Marka">Marka</label>
+    <input type="text" placeholder="Wpisz markę sprzętu" name="Marka">
+	  <!--Okienko 4-->
+	<label for="Model">Model</label>
+    <input type="text" placeholder="Wpisz model sprzętu" name="Model">
+	
+	<h3>Inne opcje</h3>
+	  <!--Okienko 5-->
+	<label for="Stanowisko">Na jakim stanowisku sprzęt jest używany?</label>
+	<select name="Stanowisko" id="Stanowiska">
+	<option value="0"></option>
+    <option value="1">Stanowisko 1</option>
+    <option value="2">Stanowisko 2</option>
+    <option value="3">Stanowisko 3</option>
+    <option value="4">Stanowisko 4</option>
+	</select>
+	  <!--Okienko 6 z datą-->
+	<p><label for="Data">Kiedy sprzęt się zepsuł?<b>*</b></label><p>
+	<input type="date" id="Data" name="Data" value="2023-01-01" min="2023-01-01" max="2100-01-01" required>
+	  <!--Okienko 7-->
+	<label for="Priorytet">Priorytet zgłoszenia<b>*</b></label>
+	<select name="Priorytet" id="Priorytety" required>
+    <option value="1">Niski</option>
+    <option value="2">Średni</option>
+    <option value="3">Wysoki</option>
+	</select>
+	  <!--Okienko 8-->
+	<p><label for="Opis">Opis uszkodzenia</label></p>
+	<textarea id="Opis" name="Opis" rows="4" cols="50">Tutaj możesz wpisać co dokładnie się wydarzyło</textarea>
+	  <!--Okienko 9-->
+	<p><label for="Info">Dodatkowe informacje</label></p>
+	<textarea id="Info" name="Info" rows="4" cols="50">Możesz podać dodatkowe informacje aby przyspieszyć proces serwisu sprzętu</textarea>
+	  <!--Przycisk 'Zatwierdź' i 'Anuluj'-->
+    <button type="submit" class="btn">Zatwierdź</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Anuluj</button>
+  </form>
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script> <!--Jakieś coś-->
+
+</body> <!--Reszta-->
+</html>
