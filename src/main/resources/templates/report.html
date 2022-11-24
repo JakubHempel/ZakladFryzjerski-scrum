@@ -20,6 +20,15 @@
   		  width: 280px;
   		  margin-right: -140px;
 		}
+		
+		form-container .close {
+			position: absolute;
+			right: 32px;
+			top: 32px;
+			width: 32px;
+			height: 32px;
+			opacity: 0.3;
+		}
 
 		/* Formularz w postaci okna podręcznego - domyślnie ukryty */
 		.form-popup {
@@ -28,6 +37,8 @@
   			bottom: 50%;
   			right: 50%;
   			border: 3px solid #f1f1f1;
+			box-shadow: 2px 2px 4px #000000;
+			border-radius: 5px;
   			z-index: 9;
   			margin-right: -250px;
   			margin-bottom: -250px;
@@ -47,8 +58,8 @@
 		  width: 100%;
 		  padding: 15px;
 		  margin: 5px 0 22px 0;
-		  border: none;
-		  background: #f1f1f1;
+		  border: 1px solid black;
+		  background: #EFF1F1;
 		  text-align: left;
 		}
 
@@ -92,14 +103,44 @@
 		  margin-bottom:10px;
 		  opacity: 0.8;
 		}
-
+		
 		/* Styl dla przycisku 'Anuluj' - nadpisuję tylko kolor */
 		.form-container .cancel {
 		  background-color: red;
 		}
 
+		/* Styl dla przycisku 'zamknij' - krzyżyk */
+		.form-container .close {
+			position: absolute;
+			right: 16px;
+			top: 16px;
+			width: 32px;
+			height: 32px;
+			opacity: 0.3;
+			border: none;
+			background-color: fff;
+		}
+		
+		.form-container .close:before, .form-container .close:after {
+			position: absolute;
+			top: -4px;
+			left: 13px;
+			content: ' ';
+			height: 33px;
+			width: 2px;
+			background-color: #333;
+		}
+		
+		.form-container .close:before {
+			transform: rotate(45deg);
+		}
+		
+		.form-container .close:after {
+			transform: rotate(-45deg);
+		}
+		
 		/* Po najechaniu myszką znika przezroczystość */
-		.form-container .btn:hover, .open-button:hover {
+		.form-container .btn:hover, .open-button:hover, .close:hover {
   		  opacity: 1;
 		}
 	</style> <!--Styl CSS dla strony-->
@@ -112,7 +153,8 @@
 <button class="open-button" onclick="openForm()">Zgłoś sprzęt</button>
 
 <div class="form-popup" id="myForm">
-  <form action="/action_page.php" class="form-container">
+  <form action="./report_action.html" class="form-container">
+	<button type="button" class="close" onclick="closeForm()"></button>
     <h1>Zgłoś uszkodzony sprzęt</h1>
 	  <!--Okienko 1-->
 	<label for="Salon">Wybierz salon<b>*</b></label>
