@@ -46,4 +46,11 @@ public class ProductController
         pRepo.deleteById(productId);
         return "redirect:/list";
     }
+    
+    @GetMapping("/report")
+    public ModelAndView reportProduct() { //Nie wiem czy tutaj ma być ModelAndView czy coś innego ale działa :)
+        ModelAndView modelAndView = new ModelAndView("report");
+        modelAndView.addObject("report", "report");
+        return modelAndView;
+    }
 }
