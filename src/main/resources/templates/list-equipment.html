@@ -185,60 +185,60 @@
                 <a th:if="${equipment.cond == 'Defective'}" th:href="@{/changeToWorking2(equipmentId=${equipment.id})}" class="btn btn-success ml-2 modal-dialog-centered">Change to working</a>
 
                 <div class="form-popup" id="myForm">
-                    <form action="/showEquipment" class="form-container">
+                    <form th:action="@{/saveReport}" th:object="${report}" method="POST" class="form-container">
                         <button type="button" class="close" onclick="closeForm()"></button>
                         <h1>Report damaged equipment</h1>
                         <!--Okienko 1-->
-                        <label for="Salon">Choose salon<b>*</b></label>
-                        <select name="Salon" id="Salony" required>
+                        <label for="salon">Choose salon<b>*</b></label>
+                        <select name="salon" id="salon" required>
                             <option value="" selected disabled hidden>Choose</option>
-                            <option value="1">Salon Suwalki</option>
-                            <option value="2">Salon Czestochowa</option>
-                            <option value="3">Salon Sandomierz</option>
-                            <option value="4">Salon Walbrzych</option>
+                            <option value="Suwalki">Salon Suwalki</option>
+                            <option value="Czestochowa">Salon Czestochowa</option>
+                            <option value="Sandomierz">Salon Sandomierz</option>
+                            <option value="Walbrzych">Salon Walbrzych</option>
                         </select>
 
                         <h2>Information about damaged equipment</h2>
                         <!--Okienko 2-->
-                        <label>Name: </label>
-                        <label class = "data" th:text="${equipment.name}"></label>
+                        <label for="name">Name<b>*</b> </label>
+                        <input type="text" placeholder="Type name of the equipment" id="name" name="name" required>
                         <br>
                         <!--Okienko 3-->
-                        <label>Manufacturer: </label>
-                        <label class = "data" th:text="${equipment.manufacturer}"></label>
+                        <label for="manufacturer">Manufacturer </label>
+                        <input type="text" placeholder="Type manufacturer of the equipment" id="manufacturer" name="manufacturer">
                         <br>
                         <!--Okienko 4-->
-                        <label for="Model">Model</label>
-                        <input type="text" placeholder="Type equipment model" name="Model">
+                        <label for="model">Model</label>
+                        <input type="text" placeholder="Type equipment model" id="model" name="model">
 
                         <h3>Other options</h3>
                         <!--Okienko 5-->
-                        <label for="Stanowisko">Select where the equipment is being used</label>
-                        <select name="Stanowisko" id="Stanowiska">
+                        <label for="workplace">Select where the equipment is being used</label>
+                        <select name="workplace" id="workplace">
                             <option value="" selected disabled hidden>Choose</option>
-                            <option value="1">Women's haircut</option>
-                            <option value="2">Men's haircut</option>
-                            <option value="3">Hair coloring</option>
-                            <option value="4">Hairstyling</option>
+                            <option value="Women's haircut">Women's haircut</option>
+                            <option value="Men's haircut">Men's haircut</option>
+                            <option value="Hair coloring">Hair coloring</option>
+                            <option value="Hairstyling">Hairstyling</option>
                         </select>
                         <!--Okienko 6 z datą-->
                         <label>When the equipment was damaged?<b>*</b>
-                            <input type="date" name="Data" required/>
+                            <input type="text" name="date_of_damage" placeholder="Type date of damage" required/>
                         </label>
                         <!--Okienko 7-->
-                        <label for="Priorytet">Priority of registration<b>*</b></label>
-                        <select name="Priorytet" id="Priorytety" required>
+                        <label for="priority">Priority of registration<b>*</b></label>
+                        <select name="priority" id="priority" required>
                             <option value="" selected disabled hidden>Choose priority</option>
                             <option value="1">Low</option>
                             <option value="2">Medium</option>
                             <option value="3">High</option>
                         </select>
                         <!--Okienko 8-->
-                        <p><label for="Opis">Description of damage</label></p>
-                        <textarea id="Opis" name="Opis" rows="4" cols="50">You can type what happened</textarea>
+                        <p><label for="description">Description of damage</label></p>
+                        <textarea id="description" name="description" rows="4" cols="50">You can type what happened</textarea>
                         <!--Okienko 9-->
-                        <p><label for="Info">Additional informations</label></p>
-                        <textarea id="Info" name="Info" rows="4" cols="50">You can specify more info to boost repair process</textarea>
+                        <p><label for="info">Additional informations</label></p>
+                        <textarea id="info" name="info" rows="4" cols="50">You can specify more info to boost repair process</textarea>
 
                         <h4><b>*</b> - Required</h4>
                         <!--Przycisk 'Zatwierdź' i 'Anuluj'-->
