@@ -18,14 +18,10 @@ public class ProductController
 {
     @Autowired
     private ProductRepository pRepo;
-    private EmailService emailService;
-
-
 
     public ProductController(ProductRepository pRepo, EmailService emailService)
     {
         this.pRepo = pRepo;
-        this.emailService = emailService;
     }
 
     @GetMapping({"/showProducts", "/", "/list"})
@@ -49,12 +45,6 @@ public class ProductController
     @PostMapping("/saveProduct")
     public String saveProduct(@ModelAttribute Product product) {
         pRepo.save(product);
-        Product productToMail = pRepo.findAll().get(pRepo.findAll().size() - 1);
-        String textOfMail = "Firma: " + productToMail.getManufacturer() + ", model: " + productToMail.getModel();
-        this.emailService.sendMassage(
-                "janskwarczenski@gmail.com",
-                "test",
-                textOfMail);
         return "redirect:/list";
     }
 

@@ -24,4 +24,54 @@ public class Report {
     private String priority = "Unknown";
     private String description;
     private String info;
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public String getSalon()
+    {
+        return salon;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public String getManufacturer()
+    {
+        return manufacturer;
+    }
+
+    public String getModel()
+    {
+        return model;
+    }
+
+    public String getWorkplace()
+    {
+        return workplace;
+    }
+
+    public String getDate_of_damage()
+    {
+        return date_of_damage;
+    }
+
+    public String getPriority()
+    {
+        return priority;
+    }
+
+    public String getDescription()
+    {
+        return description;
+    }
+
+    public String getInfo()
+    {
+        return info;
+    }
 }
