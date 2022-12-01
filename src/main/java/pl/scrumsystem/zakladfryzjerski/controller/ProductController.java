@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import pl.scrumsystem.zakladfryzjerski.entity.Product;
 import pl.scrumsystem.zakladfryzjerski.repository.ProductRepository;
+import pl.scrumsystem.zakladfryzjerski.service.EmailService;
 
 import java.util.List;
 
@@ -17,6 +18,15 @@ public class ProductController
 {
     @Autowired
     private ProductRepository pRepo;
+    private EmailService emailService;
+
+
+
+    public ProductController(ProductRepository pRepo, EmailService emailService)
+    {
+        this.pRepo = pRepo;
+        this.emailService = emailService;
+    }
 
     @GetMapping({"/showProducts", "/", "/list"})
     public ModelAndView showProducts()
@@ -35,9 +45,16 @@ public class ProductController
         return mav;
     }
 
+
     @PostMapping("/saveProduct")
     public String saveProduct(@ModelAttribute Product product) {
         pRepo.save(product);
+        Product productToMail = pRepo.findAll().get(pRepo.findAll().size() - 1);
+        String textOfMail = "Firma: " + productToMail.getManufacturer() + ", model: " + productToMail.getModel();
+        this.emailService.sendMassage(
+                "janskwarczenski@gmail.com",
+                "test",
+                textOfMail);
         return "redirect:/list";
     }
 
@@ -46,4 +63,5 @@ public class ProductController
         pRepo.deleteById(productId);
         return "redirect:/list";
     }
+
 }

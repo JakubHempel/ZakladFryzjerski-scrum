@@ -21,4 +21,18 @@ public class Product
 
     private String model;
 
+    public Long getId()
+    {
+        return id;
+    }
+
+    public String getManufacturer()
+    {
+        return manufacturer;
+    }
+
+    public String getModel()
+    {
+        return model;
+    }
 }
