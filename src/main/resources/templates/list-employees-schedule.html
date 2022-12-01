@@ -1,0 +1,65 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Employees Schedule</title>
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous" />
+</head>
+
+<body>
+
+    <a th:href="@{/showEmployeesSchedule}" class="btn btn-info">Employees Schedule</a>
+    <a th:href="@{/showEmployeesSchedule}" class="btn btn-info">Hours Schedule</a>
+
+<div class="container">
+
+    <br>
+    <h2>Employee Schedule</h2>
+    <br>
+
+    <table class="table table-bordered table-striped" id="schedule-table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Employee</th>
+            <th>Mon (28.11)</th>
+            <th>Tue (29.11)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="schedule: ${schedules}">
+            <td th:text="${schedule.id}" />
+            <td th:text="${schedule.fullname}" />
+            <td th:text="${schedule.workinghour}" />
+            <td th:text="${schedule.workinghour}" />
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <a th:href="@{/showEmployeesSchedule}" class="btn btn-danger ml-2">Delete</a>
+    <br>
+    <hr/>
+    <a th:href="@{/Schedules}">Back to the list of schedules</a>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#schedule-table").DataTable({
+            'aoColumnDefs': [{
+                'bSortable': false,
+                'aTargets': [-1] /* 1st one, start by the right */
+            }]
+        });
+    })
+</script>
+
+</body>
+
+</html>
