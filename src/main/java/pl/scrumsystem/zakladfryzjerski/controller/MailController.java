@@ -12,10 +12,4 @@ public class MailController
         this.emailService = emailService;
     }
 
-    @PostMapping("/api/message")
-    String sendEmailMassage()
-    {
-        this.emailService.sendMassage("janskwarczenski@gmail.com", "test", "hophop");
-        return "UDALO SIEEEEEEEEE";
-    }
 }
