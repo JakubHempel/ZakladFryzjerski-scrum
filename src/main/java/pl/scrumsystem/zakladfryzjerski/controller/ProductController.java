@@ -23,8 +23,13 @@ public class ProductController
     {
         this.pRepo = pRepo;
     }
+    
+    @GetMapping("/")
+    public ModelAndView showPage() {
+        return new ModelAndView("main");
+    }
 
-    @GetMapping({"/showProducts", "/", "/list"})
+    @GetMapping({"/showProducts", "/list"})
     public ModelAndView showProducts()
     {
         ModelAndView mav = new ModelAndView("list-products");
