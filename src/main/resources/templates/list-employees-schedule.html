@@ -13,8 +13,19 @@
 
 <body>
 
-    <a th:href="@{/showEmployeesSchedule}" class="btn btn-info">Employees Schedule</a>
-    <a th:href="@{/showEmployeesSchedule}" class="btn btn-info">Hours Schedule</a>
+<a th:href="@{/showEmployeesSchedule}" class="btn btn-info">Employees Schedule</a>
+<a th:href="@{/showEmployeesSchedule}" class="btn btn-info">Availability Schedule</a>
+<!--<div class="btn-group" role="group" aria-label="Button group with nested dropdown">-->
+<!--    <div class="btn-group" role="group">-->
+<!--        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--            View-->
+<!--        </button>-->
+<!--        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">-->
+<!--            <a th:href="@{/showEmployeesSchedule}" class="dropdown-item" href="#">Next week</a>-->
+<!--            <a th:href="@{/showEmployeesSchedule}" class="dropdown-item" href="#">Monthly view</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <div class="container">
 
@@ -24,24 +35,98 @@
 
     <table class="table table-bordered table-striped" id="schedule-table">
         <thead>
-        <tr>
-            <th>Id</th>
-            <th>Employee</th>
-            <th>Mon (28.11)</th>
-            <th>Tue (29.11)</th>
+        <tr id="calendar">
+            <!--            <th>Id</th>-->
+            <!--            <th>Employee</th>-->
+            <!--            <th>Mon (28.11)</th>-->
+            <!--            <th>Tue (29.11)</th>-->
         </tr>
+        <script>
+    const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+<!--    const monthdays = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"];-->
+
+<!--    const months = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];-->
+
+    for (let i = 0; i < 8; i++){
+        const cell = document.createElement("th");
+
+        if (i == 0){
+            cell.innerText = "Id";
+        } else if (i == 1){
+            cell.innerText = "Employee";
+        }
+        else if (i == 7) {
+        cell.style.visibility = "hidden"
+        }
+        else{
+            const date = new Date();
+            date.setDate(date.getDate()+(i-1));
+
+            let weekday = weekdays[date.getDay()];
+            let day = date.getDate();
+            let month = date.getMonth()+1;
+            let year = date.getFullYear();
+
+            cell.innerText = `${weekday} (${day}.${month})`
+        }
+
+        document.getElementById("calendar").appendChild(cell);
+
+
+
+
+    }
+    var i=0;
+   const date2=new Date();
+</script>
         </thead>
         <tbody>
-        <tr th:each="schedule: ${schedules}">
-            <td th:text="${schedule.id}" />
-            <td th:text="${schedule.fullname}" />
-            <td th:text="${schedule.workinghour}" />
-            <td th:text="${schedule.workinghour}" />
+        <tr th:each="schedule: ${schedules}" id="schedule">
+            <td  th:text="${schedule.id}" />
+            <td th:id="x + ${schedule.id}" th:text="${schedule.fullname}" />
+            <td th:id="a + ${schedule.id}" th:text="${schedule.workinghour}" />
+            <td th:id="b + ${schedule.id}" th:text="${schedule.workinghour}" />
+            <td th:id="c + ${schedule.id}" th:text="${schedule.workinghour}" />
+            <td th:id="d + ${schedule.id}" th:text="${schedule.workinghour}" />
+            <td th:id="e + ${schedule.id}" th:text="${schedule.workinghour}" />
+            <td th:id="f + ${schedule.id}" style="display:none;" th:text="${schedule.date}" />
+            <script>
+i++;
+if (document.getElementById(`f${i}`).innerHTML == `${date2.getDate()+1}.${date2.getMonth()+1}`)
+{document.getElementById(`a${i}`).innerText = document.getElementById(`a${i}`).innerHTML;}
+else
+{document.getElementById(`a${i}`).innerText=``;};
+
+if (document.getElementById(`f${i}`).innerHTML == `${date2.getDate()+2}.${date2.getMonth()+1}`)
+{document.getElementById(`b${i}`).innerText = document.getElementById(`b${i}`).innerHTML;}
+else
+{document.getElementById(`b${i}`).innerText=``;};
+
+if (document.getElementById(`f${i}`).innerHTML == `${date2.getDate()+3}.${date2.getMonth()+1}`)
+{document.getElementById(`c${i}`).innerText = document.getElementById(`c${i}`).innerHTML;}
+else
+{document.getElementById(`c${i}`).innerText=``;};
+
+if (document.getElementById(`f${i}`).innerHTML == `${date2.getDate()+4}.${date2.getMonth()+1}`)
+{document.getElementById(`d${i}`).innerText = document.getElementById(`d${i}`).innerHTML;}
+else
+{document.getElementById(`d${i}`).innerText=``;};
+
+if (document.getElementById(`f${i}`).innerHTML == `${date2.getDate()+5}.${date2.getMonth()+1}`)
+{document.getElementById(`e${i}`).innerText = document.getElementById(`e${i}`).innerHTML;}
+else
+{document.getElementById(`e${i}`).innerText=``;};
+
+
+</script>
         </tr>
         </tbody>
     </table>
     <br>
-    <a th:href="@{/showEmployeesSchedule}" class="btn btn-danger ml-2">Delete</a>
+    <a th:href="@{/showEmployeesSchedule}" class="btn btn-primary mb-2">Add Hours</a>
+    <br>
+    <a th:href="@{/showEmployeesSchedule}" class="btn btn-danger mb-2">Delete</a>
     <br>
     <hr/>
     <a th:href="@{/Schedules}">Back to the list of schedules</a>
@@ -58,7 +143,10 @@
             }]
         });
     })
+
 </script>
+
+
 
 </body>
 
