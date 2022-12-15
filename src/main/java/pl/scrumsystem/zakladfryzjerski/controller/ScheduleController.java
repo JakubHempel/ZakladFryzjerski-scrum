@@ -38,4 +38,11 @@ public class ScheduleController {
         return mav;
     }
 
+    @GetMapping({"/inProgress"})
+    public ModelAndView inProgress()
+    {
+        ModelAndView mav = new ModelAndView("in_progress");
+        return mav;
+    }
+
 }
