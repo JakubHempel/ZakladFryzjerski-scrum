@@ -50,7 +50,7 @@
         }
         else{
             const date = new Date();
-            date.setDate(date.getDate()+(i-1));
+            date.setDate(date.getDate()+(i-2));
 
             let weekday = weekdays[date.getDay()];
             let day = date.getDate();
@@ -68,6 +68,8 @@
     }
     var i=0;
    const date2=new Date();
+   let days = date2.getDate()-1;
+   let months = date2.getMonth()+1;
 </script>
     </thead>
     <tbody>
@@ -82,27 +84,27 @@
       <td th:id="f + ${availability.id}" style="display:none;" th:text="${availability.date}" />
       <script>
 i++;
-if (document.getElementById(`f${i}`).innerHTML == `${date2.getDate()+1}.${date2.getMonth()+1}`)
+if (document.getElementById(`f${i}`).innerHTML == `${days+1}.${months}`)
 {document.getElementById(`a${i}`).innerText = document.getElementById(`a${i}`).innerHTML;}
 else
 {document.getElementById(`a${i}`).innerText=``;};
 
-if (document.getElementById(`f${i}`).innerHTML == `${date2.getDate()+2}.${date2.getMonth()+1}`)
+if (document.getElementById(`f${i}`).innerHTML == `${days+2}.${months}`)
 {document.getElementById(`b${i}`).innerText = document.getElementById(`b${i}`).innerHTML;}
 else
 {document.getElementById(`b${i}`).innerText=``;};
 
-if (document.getElementById(`f${i}`).innerHTML == `${date2.getDate()+3}.${date2.getMonth()+1}`)
+if (document.getElementById(`f${i}`).innerHTML == `${days+3}.${months}`)
 {document.getElementById(`c${i}`).innerText = document.getElementById(`c${i}`).innerHTML;}
 else
 {document.getElementById(`c${i}`).innerText=``;};
 
-if (document.getElementById(`f${i}`).innerHTML == `${date2.getDate()+4}.${date2.getMonth()+1}`)
+if (document.getElementById(`f${i}`).innerHTML == `${days+4}.${months}`)
 {document.getElementById(`d${i}`).innerText = document.getElementById(`d${i}`).innerHTML;}
 else
 {document.getElementById(`d${i}`).innerText=``;};
 
-if (document.getElementById(`f${i}`).innerHTML == `${date2.getDate()+5}.${date2.getMonth()+1}`)
+if (document.getElementById(`f${i}`).innerHTML == `${days+5}.${months}`)
 {document.getElementById(`e${i}`).innerText = document.getElementById(`e${i}`).innerHTML;}
 else
 {document.getElementById(`e${i}`).innerText=``;};
