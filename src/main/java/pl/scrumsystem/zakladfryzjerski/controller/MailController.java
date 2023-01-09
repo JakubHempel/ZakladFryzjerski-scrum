@@ -1,6 +1,5 @@
 package pl.scrumsystem.zakladfryzjerski.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
 import pl.scrumsystem.zakladfryzjerski.service.EmailService;
 
 public class MailController
@@ -11,5 +10,4 @@ public class MailController
     {
         this.emailService = emailService;
     }
-
 }
