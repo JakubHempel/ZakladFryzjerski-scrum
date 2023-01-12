@@ -87,11 +87,11 @@
         <tr th:each="schedule: ${schedules}" id="schedule">
             <td  th:text="${schedule.id}" />
             <td th:id="x + ${schedule.id}" th:text="${schedule.fullname}" />
-            <td th:id="a + ${schedule.id}" th:text="${schedule.workinghour}" />
-            <td th:id="b + ${schedule.id}" th:text="${schedule.workinghour}" />
-            <td th:id="c + ${schedule.id}" th:text="${schedule.workinghour}" />
-            <td th:id="d + ${schedule.id}" th:text="${schedule.workinghour}" />
-            <td th:id="e + ${schedule.id}" th:text="${schedule.workinghour}" />
+            <td th:id="a + ${schedule.id}" th:text="${schedule.workinghours}" />
+            <td th:id="b + ${schedule.id}" th:text="${schedule.workinghours}" />
+            <td th:id="c + ${schedule.id}" th:text="${schedule.workinghours}" />
+            <td th:id="d + ${schedule.id}" th:text="${schedule.workinghours}" />
+            <td th:id="e + ${schedule.id}" th:text="${schedule.workinghours}" />
             <td th:id="f + ${schedule.id}" style="display:none;" th:text="${schedule.date}" />
             <script>
 i++;
@@ -126,9 +126,9 @@ else
         </tbody>
     </table>
     <br>
-    <a th:href="@{/showEmployeesSchedule}" class="btn btn-primary mb-2">Add Hours</a>
+    <a th:href="@{/addHoursForm}" class="btn btn-primary mb-2">Add Hours</a>
     <br>
-    <a th:href="@{/showEmployeesSchedule}" class="btn btn-danger mb-2">Delete</a>
+    <a th:href="@{/inProgress}" class="btn btn-danger mb-2">Delete</a>
     <br>
     <hr/>
     <a th:href="@{/Schedules}">Back to the list of schedules</a>

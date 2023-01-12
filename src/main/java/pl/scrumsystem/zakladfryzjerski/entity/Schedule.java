@@ -22,10 +22,5 @@ public class Schedule
 
     private String fullname;
 
-    private String starthour_h_m;
-
-    private String endhour_h_m;
-
-    private String workinghour;
-
+    private String workinghours;
 }
